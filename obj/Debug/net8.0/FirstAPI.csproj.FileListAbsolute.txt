@@ -46,5 +46,4 @@ C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.
 C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.0\FirstAPI.pdb
 C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.0\FirstAPI.genruntimeconfig.cache
 C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.0\ref\FirstAPI.dll
-C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\bin\Debug\net8.0\FirstAPI.xml
-C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.0\FirstAPI.xml
+C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.0\FirstAPI.sourcelink.json
