@@ -2,16 +2,19 @@
 using FirstAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace FirstAPI.Migrations
 {
-    [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MovieAppContext))]
+    [Migration("20240209024833_MigracaoCinema")]
+    partial class MigracaoCinema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,6 +42,22 @@ namespace FirstAPI.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("FirstApi.Models.Cinema", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Cinemas");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,11 +11,11 @@ namespace FirstAPI.Controllers;
 public class MovieController : ControllerBase
 {
 
-    private MovieContext _context;
+    private MovieAppContext _context;
     private IMapper _mapper;
 
 
-    public MovieController(MovieContext context, IMapper mapper)
+    public MovieController(MovieAppContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

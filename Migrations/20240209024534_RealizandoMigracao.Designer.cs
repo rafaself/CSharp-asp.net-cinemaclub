@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FirstAPI.Migrations
 {
-    [DbContext(typeof(MovieContext))]
-    [Migration("20240209000620_FirstMigration")]
-    partial class FirstMigration
+    [DbContext(typeof(MovieAppContext))]
+    [Migration("20240209024534_RealizandoMigracao")]
+    partial class RealizandoMigracao
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
