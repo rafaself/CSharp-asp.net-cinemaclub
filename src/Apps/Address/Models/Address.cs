@@ -11,7 +11,7 @@ public class Address
     public int ID { get; set; }
 
     [Required(ErrorMessage = "O campo rua é obrigatório.")]
-    public required string Street { get; set; }
+    public string Street { get; set; }
 
     [Required(ErrorMessage = "O campo número é obrigatório.")]
     public int Number { get; set; }

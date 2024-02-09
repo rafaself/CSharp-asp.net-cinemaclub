@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FirstAPI.Controllers;
 
+[ApiController]
+[Route("[controller]")]
 public class AddressController : ControllerBase
 {
 
