@@ -2,6 +2,7 @@
 using FirstAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstAPI.Migrations
 {
     [DbContext(typeof(MovieAppContext))]
-    partial class MovieAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240209222542_AdicionandoSessoes")]
+    partial class AdicionandoSessoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,12 +71,7 @@ namespace FirstAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("MovieID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("MovieID");
 
                     b.ToTable("Sessions");
                 });
@@ -100,17 +98,6 @@ namespace FirstAPI.Migrations
                     b.ToTable("Cinemas");
                 });
 
-            modelBuilder.Entity("FirstAPI.Models.Session", b =>
-                {
-                    b.HasOne("FirstAPI.Models.Movie", "Movie")
-                        .WithMany("Sessions")
-                        .HasForeignKey("MovieID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-                });
-
             modelBuilder.Entity("FirstApi.Models.Cinema", b =>
                 {
                     b.HasOne("FirstAPI.Models.Address", "Address")
@@ -126,11 +113,6 @@ namespace FirstAPI.Migrations
                 {
                     b.Navigation("Cinema")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FirstAPI.Models.Movie", b =>
-                {
-                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

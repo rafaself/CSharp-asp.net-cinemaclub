@@ -14,4 +14,6 @@ public class MovieAppContext : DbContext
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Cinema> Cinemas { get; set; }
     public DbSet<Address> Addresses { get; set; }
+    public DbSet<Session> Sessions { get; set; }
+    
 }

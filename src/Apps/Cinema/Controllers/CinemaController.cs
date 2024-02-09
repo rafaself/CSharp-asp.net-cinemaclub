@@ -2,12 +2,8 @@ using AutoMapper;
 using FirstApi.Models;
 using FirstAPI.Data;
 using FirstAPI.Data.Dtos;
-using FirstAPI.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using MySqlConnector;
 
 namespace FirstAPI.Controllers;
 
