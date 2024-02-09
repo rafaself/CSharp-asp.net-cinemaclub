@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using FirstApi.Models;
 
 namespace FirstAPI.Models;
 
@@ -14,4 +15,6 @@ public class Address
 
     [Required(ErrorMessage = "O campo número é obrigatório.")]
     public int Number { get; set; }
+
+    public virtual Cinema Cinema { get; set; }
 }
