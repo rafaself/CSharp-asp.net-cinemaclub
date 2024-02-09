@@ -31,10 +31,19 @@ public class MovieController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult CreateMovie([FromBody] CreateMovieDto movieDto)
     {
-        Movie movie = _mapper.Map<Movie>(movieDto);
-        _context.Movies.Add(movie);
-        _context.SaveChanges();
-        return CreatedAtAction(nameof(RetrieveMovieByID), new { id = movie.ID }, movie);
+        try
+        {
+
+            Movie movie = _mapper.Map<Movie>(movieDto);
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(RetrieveMovieByID), new { id = movie.ID }, movie);
+        }
+        catch (Exception exc)
+        {
+            Console.WriteLine(exc);
+            return NoContent();
+        }
     }
 
     [HttpPut("{id}")]

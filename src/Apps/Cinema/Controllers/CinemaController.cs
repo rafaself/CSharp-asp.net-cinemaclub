@@ -5,7 +5,9 @@ using FirstAPI.Data.Dtos;
 using FirstAPI.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MySqlConnector;
 
 namespace FirstAPI.Controllers;
 
@@ -25,10 +27,18 @@ public class CinemaController : ControllerBase
     [HttpPost]
     public IActionResult CreateCinema([FromBody] CreateCinemaDto cinemaDto)
     {
-        Cinema cinema = _mapper.Map<Cinema>(cinemaDto);
-        _context.Cinemas.Add(cinema);
-        _context.SaveChanges();
-        return CreatedAtAction(nameof(RetrieveCinemaByID), new { id = cinema.ID }, cinema);
+        try
+        {
+
+            Cinema cinema = _mapper.Map<Cinema>(cinemaDto);
+            _context.Cinemas.Add(cinema);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(RetrieveCinemaByID), new { id = cinema.ID }, cinema);
+        }
+        catch (Exception exc) {
+            Console.WriteLine(exc.ToString());
+            return BadRequest(new { message = "Ocorreu um erro ao criar o cinema." });
+        }
     }
 
     [HttpGet]
@@ -40,11 +50,12 @@ public class CinemaController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ReadCinemaDto RetrieveCinemaByID(int id)
+    public IActionResult RetrieveCinemaByID(int id)
     {
         var cinemaFromDb = _context.Cinemas.FirstOrDefault(cinema => cinema.ID == id);
+        if (cinemaFromDb == null) return NotFound();
         var cinemasMapped = _mapper.Map<ReadCinemaDto>(cinemaFromDb);
-        return cinemasMapped;
+        return Ok(cinemasMapped);
     }
 
     [HttpPut("{id}")]
