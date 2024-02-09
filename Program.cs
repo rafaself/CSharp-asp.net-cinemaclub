@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("MovieConnection");
 
 builder.Services.AddDbContext<MovieAppContext>(
-    opts => opts.UseMySql(
-        connectionString, // Utilize a variável connectionString aqui
+    opts => opts.UseLazyLoadingProxies().UseMySql(
+        connectionString,
         ServerVersion.AutoDetect(connectionString)
     )
 );

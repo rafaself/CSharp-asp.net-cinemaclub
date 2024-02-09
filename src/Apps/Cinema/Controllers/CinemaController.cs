@@ -34,7 +34,7 @@ public class CinemaController : ControllerBase
     [HttpGet]
     public IEnumerable<ReadCinemaDto> ListCinemas([FromQuery] int skip = 0, [FromQuery] int limit = 50)
     {
-        var cinemasFromDb = _context.Cinemas.Skip(skip).Take(limit);
+        var cinemasFromDb = _context.Cinemas.Skip(skip).Take(limit).ToList();
         var cinemasMapped = _mapper.Map<List<ReadCinemaDto>>(cinemasFromDb);
         return cinemasMapped;
     }
