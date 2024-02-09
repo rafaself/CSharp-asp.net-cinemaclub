@@ -4,7 +4,6 @@ using FirstAPI.Data.Dtos;
 using FirstAPI.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Pomelo.EntityFrameworkCore.MySql.Query.Internal;
 
 namespace FirstAPI.Controllers;
 
