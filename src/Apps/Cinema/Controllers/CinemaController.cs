@@ -63,15 +63,15 @@ public class CinemaController : ControllerBase
         var cinemaFromDb = _context.Cinemas.FirstOrDefault(cinema => cinema.ID == id);
         if (cinemaFromDb == null) return NotFound();
 
-        var cinemaToUpdate = _mapper.Map<UpdateCinemaDto>(cinemaFromDb);
-        patch.ApplyTo(cinemaToUpdate, ModelState);
+        var cinemaMapped = _mapper.Map<UpdateCinemaDto>(cinemaFromDb);
+        patch.ApplyTo(cinemaMapped, ModelState);
 
-        if (!TryValidateModel(cinemaToUpdate))
+        if (!TryValidateModel(cinemaMapped))
         {
             return ValidationProblem(ModelState);
         }
 
-        _mapper.Map(cinemaToUpdate, cinemaFromDb);
+        _mapper.Map(cinemaMapped, cinemaFromDb);
         _context.SaveChanges();
 
         return NoContent();
@@ -80,7 +80,7 @@ public class CinemaController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult DeleteCinema(int id)
     {
-        Cinema? cinemaFromDb = _context.Cinemas.FirstOrDefault(cinema => cinema.ID == id);
+        var cinemaFromDb = _context.Cinemas.FirstOrDefault(cinema => cinema.ID == id);
         if (cinemaFromDb == null) return NotFound();
         _context.Remove(cinemaFromDb);
         _context.SaveChanges();
