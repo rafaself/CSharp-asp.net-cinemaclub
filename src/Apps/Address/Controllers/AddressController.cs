@@ -31,7 +31,7 @@ public class AddressController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ReadAddressDto> ListAddresses(int skip = 0, int take = 100)
+    public IEnumerable<ReadAddressDto> ListAddresses([FromQuery] int skip = 0, [FromQuery] int take = 100)
     {
         var addressesFromDb = _context.Addresses.Skip(skip).Take(take);
         var addressesMapped = _mapper.Map<List<ReadAddressDto>>(addressesFromDb);
