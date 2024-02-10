@@ -49,7 +49,8 @@ public class MovieController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult UpdateMovie(int id, [FromBody] UpdateMovieDto movieDto)
     {
-        Movie? movie = _context.Movies.FirstOrDefault(movie => movie.ID == id);
+        Movie? movie = _context.Movies
+            .FirstOrDefault(movie => movie.ID == id);
         if (movie == null) NotFound();
         _mapper.Map(movieDto, movie);
         _context.SaveChanges();
@@ -60,8 +61,8 @@ public class MovieController : ControllerBase
     public IActionResult UpdateMoviePartially(int id,
         JsonPatchDocument<UpdateMovieDto> patch)
     {
-        var movie = _context.Movies.FirstOrDefault(
-            movie => movie.ID == id);
+        var movie = _context.Movies
+            .FirstOrDefault(movie => movie.ID == id);
         if (movie == null) return NotFound();
 
         var movieToUpdate = _mapper.Map<UpdateMovieDto>(movie);
@@ -85,7 +86,9 @@ public class MovieController : ControllerBase
     )
     {
         var moviesDb = _context.Movies.Skip(skip).Take(limit)
-        .Where(movie => movie.Sessions.Any(session => cinemaName != null ?session.Cinema.Name == cinemaName : true)).ToList();
+            .Where(movie => movie.Sessions
+            .Any(session => cinemaName != null ? session.Cinema.Name == cinemaName : true))
+            .ToList();
         var moviesMapped = _mapper.Map<List<ReadMovieDto>>(moviesDb);
         return moviesMapped;
     }
