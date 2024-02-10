@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstAPI.Migrations
 {
     [DbContext(typeof(MovieAppContext))]
-    [Migration("20240209224754_OneToManySessionMovie")]
-    partial class OneToManySessionMovie
+    [Migration("20240210142756_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,16 +67,15 @@ namespace FirstAPI.Migrations
 
             modelBuilder.Entity("FirstAPI.Models.Session", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     b.Property<int>("MovieID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<int>("CinemaID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("MovieID");
+                    b.HasKey("MovieID", "CinemaID");
+
+                    b.HasIndex("CinemaID");
 
                     b.ToTable("Sessions");
                 });
@@ -105,11 +104,19 @@ namespace FirstAPI.Migrations
 
             modelBuilder.Entity("FirstAPI.Models.Session", b =>
                 {
+                    b.HasOne("FirstApi.Models.Cinema", "Cinema")
+                        .WithMany("Sessions")
+                        .HasForeignKey("CinemaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FirstAPI.Models.Movie", "Movie")
                         .WithMany("Sessions")
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Cinema");
 
                     b.Navigation("Movie");
                 });
@@ -132,6 +139,11 @@ namespace FirstAPI.Migrations
                 });
 
             modelBuilder.Entity("FirstAPI.Models.Movie", b =>
+                {
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("FirstApi.Models.Cinema", b =>
                 {
                     b.Navigation("Sessions");
                 });

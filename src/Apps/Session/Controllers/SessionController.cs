@@ -28,20 +28,22 @@ public class SessionController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ReadSessionDto> ListSessions([FromQuery] int skip = 0, [FromQuery] int limit = 50)
+    public IActionResult ListSessions(
+        [FromQuery] int movieID, 
+        [FromQuery] int cinemaID,
+        [FromQuery] int skip = 0, 
+        [FromQuery] int limit = 50 
+        )
     {
-        var sessionsDb = _context.Sessions.Skip(skip).Take(limit);
-        var sessionsMapped = _mapper.Map<List<ReadSessionDto>>(sessionsDb);
-        return sessionsMapped;
-    }
-
-    [HttpGet]
-    public IActionResult RetrieveSession([FromQuery] int movieID, [FromQuery] int cinemaID)
-    {
-        var sessionDB = _context.Sessions.FirstOrDefault(session => session.MovieID == movieID && session.CinemaID == cinemaID);
-        if (sessionDB == null) return NotFound();
-        var sessionsMapped = _mapper.Map<ReadSessionDto>(sessionDB);
-        return Ok(sessionsMapped);
+        if (movieID != 0 && cinemaID != 0) {
+            var sessionDb = _context.Sessions.FirstOrDefault(session => session.MovieID == movieID && session.CinemaID == cinemaID);
+            var sessionMapped = _mapper.Map<ReadSessionDto>(sessionDb);
+            return Ok(sessionMapped);
+        } else {
+            var sessionsDb = _context.Sessions.Skip(skip).Take(limit);
+            var sessionsMapped = _mapper.Map<List<ReadSessionDto>>(sessionsDb);
+            return Ok(sessionsMapped);
+        }
     }
 
     [HttpDelete]
