@@ -78,9 +78,16 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ReadMovieDto> ListMovies([FromQuery] int skip = 0, [FromQuery] int limit = 50)
+    public IEnumerable<ReadMovieDto> ListMovies(
+        [FromQuery] string? cinemaName = null,
+        [FromQuery] int skip = 0,
+        [FromQuery] int limit = 50
+    )
     {
-        return _mapper.Map<List<ReadMovieDto>>(_context.Movies.Skip(skip).Take(limit).ToList());
+        var moviesDb = _context.Movies.Skip(skip).Take(limit)
+        .Where(movie => movie.Sessions.Any(session => cinemaName != null ?session.Cinema.Name == cinemaName : true)).ToList();
+        var moviesMapped = _mapper.Map<List<ReadMovieDto>>(moviesDb);
+        return moviesMapped;
     }
 
     [HttpGet("{id}")]

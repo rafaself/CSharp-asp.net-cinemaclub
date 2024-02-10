@@ -4,6 +4,7 @@ using FirstAPI.Data;
 using FirstAPI.Data.Dtos;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FirstAPI.Controllers;
 
@@ -41,6 +42,8 @@ public class CinemaController : ControllerBase
     public IEnumerable<ReadCinemaDto> ListCinemas([FromQuery] int skip = 0, [FromQuery] int limit = 50)
     {
         var cinemasFromDb = _context.Cinemas.Skip(skip).Take(limit).ToList();
+        // var cinemasFromDb = _context.Cinemas.FromSqlRaw("SELECT ID, name FROM cinemas");
+
         var cinemasMapped = _mapper.Map<List<ReadCinemaDto>>(cinemasFromDb);
         return cinemasMapped;
     }
@@ -48,7 +51,8 @@ public class CinemaController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult RetrieveCinemaByID(int id)
     {
-        var cinemaFromDb = _context.Cinemas.FirstOrDefault(cinema => cinema.ID == id);
+        // var cinemaFromDb = _context.Cinemas.FirstOrDefault(cinema => cinema.ID == id);
+        var cinemaFromDb = _context.Cinemas.FromSqlRaw($"SELECT * FROM cinemas WHERE ID = {id}").FirstOrDefault();;
         if (cinemaFromDb == null) return NotFound();
         var cinemasMapped = _mapper.Map<ReadCinemaDto>(cinemaFromDb);
         return Ok(cinemasMapped);
