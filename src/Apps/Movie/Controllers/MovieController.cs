@@ -78,9 +78,9 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ReadMovieDto> ListMovie([FromQuery] int skip = 0, [FromQuery] int limit = 50)
+    public IEnumerable<ReadMovieDto> ListMovies([FromQuery] int skip = 0, [FromQuery] int limit = 50)
     {
-        return _mapper.Map<List<ReadMovieDto>>(_context.Movies.Skip(skip).Take(limit));
+        return _mapper.Map<List<ReadMovieDto>>(_context.Movies.Skip(skip).Take(limit).ToList());
     }
 
     [HttpGet("{id}")]

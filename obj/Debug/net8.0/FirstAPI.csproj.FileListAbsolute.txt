@@ -49,3 +49,4 @@ C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.
 C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\obj\Debug\net8.0\FirstAPI.sourcelink.json
 C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\bin\Debug\net8.0\Castle.Core.dll
 C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\rafae\OneDrive\Programação\#Programação\C#\FirstAPI\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

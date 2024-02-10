@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-public class ReadSessionDto {
-    [Required]
-    public int ID;
+public class ReadSessionDto
+{
+    public int ID { get; set; }
 }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "/frcFkT/xm8rvTBR0PqOTrjLyg554aIYvuksXzlksvqYOBGnRsp90F9Jvlq8ghdsTwnIFR/fXdvZXVthaYPnbQ==",
+  "dgSpecHash": "TMqq49swByrGDluXuf3QoKjXq4G2UpxzHlVOqVqhUVyv1CsE5pLC0CwRZ2w5P5Urh6ys4MNYXEWqgCgJeFENjQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\rafae\\OneDrive\\Programação\\#Programação\\C#\\FirstAPI\\FirstAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\rafae\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\rafae\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\rafae\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\rafae\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\rafae\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\rafae\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.2\\microsoft.aspnetcore.jsonpatch.7.0.2.nupkg.sha512",
