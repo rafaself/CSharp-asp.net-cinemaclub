@@ -35,19 +35,19 @@ public class SessionController : ControllerBase
         return sessionsMapped;
     }
 
-    [HttpGet("{id}")]
-    public IActionResult RetrieveSessionByID(int id)
+    [HttpGet]
+    public IActionResult RetrieveSession([FromQuery] int movieID, [FromQuery] int cinemaID)
     {
-        var sessionDB = _context.Sessions.FirstOrDefault(session => session.ID == id);
+        var sessionDB = _context.Sessions.FirstOrDefault(session => session.MovieID == movieID && session.CinemaID == cinemaID);
         if (sessionDB == null) return NotFound();
         var sessionsMapped = _mapper.Map<ReadSessionDto>(sessionDB);
         return Ok(sessionsMapped);
     }
 
-    [HttpDelete("{id}")]
-    public IActionResult DeleteSession(int id)
+    [HttpDelete]
+    public IActionResult DeleteSession([FromQuery] int movieID, [FromQuery] int cinemaID)
     {
-        var sessionDB = _context.Sessions.FirstOrDefault(session => session.ID == id);
+        var sessionDB = _context.Sessions.FirstOrDefault(session => session.MovieID == movieID && session.CinemaID == cinemaID);
         if (sessionDB == null) return NotFound();
         _context.Sessions.Remove(sessionDB);
         _context.SaveChanges();

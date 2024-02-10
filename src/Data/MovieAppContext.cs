@@ -11,9 +11,24 @@ public class MovieAppContext : DbContext
 
     }
 
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Session>()
+            .HasKey(session => new { session.MovieID, session.CinemaID });
+
+        builder.Entity<Session>()
+            .HasOne(session => session.Cinema)
+            .WithMany(cinema => cinema.Sessions)
+            .HasForeignKey(session => session.CinemaID);
+    
+        builder.Entity<Session>()
+            .HasOne(session => session.Movie)
+            .WithMany(movie => movie.Sessions)
+            .HasForeignKey(session => session.MovieID);
+    }
+
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Cinema> Cinemas { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Session> Sessions { get; set; }
-    
 }
