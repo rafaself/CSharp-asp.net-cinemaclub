@@ -25,15 +25,15 @@ public class CinemaController : ControllerBase
     {
         try
         {
-
             Cinema cinema = _mapper.Map<Cinema>(cinemaDto);
             _context.Cinemas.Add(cinema);
             _context.SaveChanges();
             return CreatedAtAction(nameof(RetrieveCinemaByID), new { id = cinema.ID }, cinema);
         }
-        catch (Exception exc) {
+        catch (Exception exc)
+        {
             Console.WriteLine(exc.ToString());
-            return BadRequest(new { message = "Ocorreu um erro ao criar o cinema." });
+            return BadRequest(new { message = "Ocorreu um erro ao criar o cinema. Verifique se o cinema e o endereço existem." });
         }
     }
 
